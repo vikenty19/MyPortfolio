@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class MakePaymentClass extends BaseTest {
+public class MakePaymentTests extends BaseTest {
 
 
  By name = By.cssSelector("#NameOnAccount");
