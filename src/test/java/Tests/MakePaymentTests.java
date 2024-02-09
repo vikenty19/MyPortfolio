@@ -26,7 +26,9 @@ public class MakePaymentTests extends BaseTest {
  By cvvLocator = By.cssSelector("input#cvv");
  By sbmtLocator = By.cssSelector("[data-name='Submit Button']");
  By alertLocator = By.xpath("//div/p[contains(text(),'Enter Address')]");
-
+  By fridgeCss = By.cssSelector(" #extra-66 div img ");
+  By insideFridgeLocator = By.cssSelector(".shadow-border.summary-panel .extra-summary-title");
+  By fridgePriceLocator = By.cssSelector(".shadow-border.summary-panel .extra-summary-total");
 
     @Test(invocationCount = 4,successPercentage = 75)
     public void paymentDataTest() throws InterruptedException {
@@ -96,13 +98,29 @@ public class MakePaymentTests extends BaseTest {
         System.out.println("You made a reservation successfully ");
 
 
-// inside fridge #extra-66 div img
+// inside fridge #extra-66 div img      ------//.inside-the-fridge >.ng-scope  // in checking get text ==.shadow-border.summary-panel .extra-summary-title
 // final price .shadow-border.summary-panel [data-id='103'] .final-price-value
 
 //alert locator div.alert-danger
     }
 
+@Test(invocationCount = 3)
+    public void addExtraService() throws InterruptedException {
+    MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
+  //  JavascriptExecutor js = (JavascriptExecutor)driver;
 
+    makePaymentPage.clickBookPage();
+  //  Thread.sleep(3000);
+    makePaymentPage.switchToMainIframe();
+    wait.until(ExpectedConditions.elementToBeClickable(fridgeCss)).click();
+    WebElement addFridge = wait.until(ExpectedConditions
+            .visibilityOfElementLocated(insideFridgeLocator));
+    String insideFridge = addFridge.getText();
+   Assert.assertTrue(wait.until(ExpectedConditions
+           .textToBePresentInElementLocated(fridgePriceLocator,"25")));
+    Assert.assertEquals(insideFridge,"Inside the Fridge");
+    System.out.println(insideFridge);
+}
 
 
 }
