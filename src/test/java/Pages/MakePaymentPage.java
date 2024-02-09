@@ -109,4 +109,17 @@ public class MakePaymentPage extends BasePage {
         Assert.assertTrue(alertBanner.isDisplayed());
 
     }
+    public void clickInsideFridgeService(){
+        wait.until(ExpectedConditions.elementToBeClickable(fridgeCss)).click();
+    }
+
+    public void isFridgeAddedToBooking() {
+        WebElement addFridge = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(insideFridgeLocator));
+        String insideFridge = addFridge.getText();
+        Assert.assertTrue(wait.until(ExpectedConditions
+                .textToBePresentInElementLocated(fridgePriceLocator, "25")));
+        Assert.assertEquals(insideFridge, "Inside the Fridge");
+        System.out.println(insideFridge);
+    }
 }

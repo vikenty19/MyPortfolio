@@ -10,18 +10,12 @@ import org.testng.annotations.Test;
 
 public class MakePaymentTests extends BaseTest {
 
-
-   
-    By fridgeCss = By.cssSelector(" #extra-66 div img ");
-    By insideFridgeLocator = By.cssSelector(".shadow-border.summary-panel .extra-summary-title");
-    By fridgePriceLocator = By.cssSelector(".shadow-border.summary-panel .extra-summary-total");
-
-    @Test(invocationCount = 1, successPercentage = 75)
+    @Test(invocationCount = 10, successPercentage = 75)
     public void paymentDataTest() throws InterruptedException {
         MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         makePaymentPage.clickBookPage();
-        Thread.sleep(3000);
+    //  Thread.sleep(3000);
         makePaymentPage.switchToMainIframe();
         makePaymentPage.enterTheUserName(js);
         makePaymentPage.enterZipCode(js);
@@ -59,14 +53,10 @@ public class MakePaymentTests extends BaseTest {
         MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
         makePaymentPage.clickBookPage();
         makePaymentPage.switchToMainIframe();
-        wait.until(ExpectedConditions.elementToBeClickable(fridgeCss)).click();
-        WebElement addFridge = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(insideFridgeLocator));
-        String insideFridge = addFridge.getText();
-        Assert.assertTrue(wait.until(ExpectedConditions
-                .textToBePresentInElementLocated(fridgePriceLocator, "25")));
-        Assert.assertEquals(insideFridge, "Inside the Fridge");
-        System.out.println(insideFridge);
+        makePaymentPage.clickInsideFridgeService();
+        makePaymentPage.isFridgeAddedToBooking();
+
+
     }
 
 
