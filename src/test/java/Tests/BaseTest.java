@@ -63,6 +63,7 @@ public class BaseTest {
         System.out.println(driver.getCurrentUrl());
 
     }
+
  @Test
     public void datePicker() throws InterruptedException {
 

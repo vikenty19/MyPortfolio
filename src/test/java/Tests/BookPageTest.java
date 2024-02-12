@@ -1,13 +1,18 @@
 package Tests;
 
+import Pages.BookPage;
+import Pages.MakePaymentPage;
 import Tests.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.Select;
+
+import java.time.Duration;
 
 public class BookPageTest extends BaseTest {
     //first name [data-code="first_name"]
@@ -23,8 +28,7 @@ public class BookPageTest extends BaseTest {
     @Test
     public void registrationSuccessTest() throws InterruptedException {
 
-By bookXml = By.cssSelector("li[id='menu-item-122']");
-By frame = By.cssSelector("//div[@data-id = '1']/input[not(contains(@class,'ng-pristine'))]");
+
 By firstN = By.cssSelector("input[name='booking[first_name]']");
 By lastN = By.cssSelector("[data-id='2'] input");
 By mailCSS = By.cssSelector("[data-id='3'] input");
@@ -41,16 +45,17 @@ By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
        By dataCss = By.cssSelector("[data-id= '181']>input");
  //       By dataCss = By.id("dp1706116425190");
         By monthCss = By.xpath("//span[@class ='ui-datepicker-month']");
-       JavascriptExecutor js = (JavascriptExecutor)driver;
 
-        WebElement bookNowBtn = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(bookXml));
-        bookNowBtn.click();
+
+       JavascriptExecutor js = (JavascriptExecutor)driver;
+        MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
+BookPage bookPage = new BookPage(driver);
+        makePaymentPage.clickBookPage();
         System.out.println("Before");
         Thread.sleep(3000);
-        WebElement iframe = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(iframeXpath));
-        driver.switchTo().frame(iframe);
+
+
+        makePaymentPage.switchToMainIframe();
         Thread.sleep(1000);
         WebElement firstName =driver.findElement(firstN);
         firstName.click();
@@ -60,10 +65,7 @@ By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
 
 
         //last name
-        WebElement lastName =driver.findElement(lastN);
-        lastName.click();
-        lastName.clear();
-        lastName.sendKeys("Dou");
+        bookPage.enterFieldValue("Dou");
         //email
         WebElement email =  wait.until(ExpectedConditions
                 .visibilityOfElementLocated(mailCSS));
@@ -157,4 +159,6 @@ By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
 
 
     }
+
+
 }

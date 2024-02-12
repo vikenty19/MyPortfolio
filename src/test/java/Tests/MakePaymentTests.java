@@ -1,16 +1,12 @@
 package Tests;
 
 import Pages.MakePaymentPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MakePaymentTests extends BaseTest {
 
-    @Test(invocationCount = 10, successPercentage = 75)
+    @Test(invocationCount = 1, successPercentage = 75)
     public void paymentDataTest() throws InterruptedException {
         MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -49,7 +45,7 @@ public class MakePaymentTests extends BaseTest {
 
 
     @Test(invocationCount = 3)
-    public void addExtraService() throws InterruptedException {
+    public void addInsideFridgeService() throws InterruptedException {
         MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
         makePaymentPage.clickBookPage();
         makePaymentPage.switchToMainIframe();

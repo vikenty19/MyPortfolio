@@ -72,7 +72,7 @@ public class MakePaymentPage extends BasePage {
         cvv.click();
         cvv.sendKeys("345");
     }
-    public void switchToMainIframe() throws InterruptedException {
+    public void switchToMainIframe()  {
         WebElement iframe = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(iframeXpath));
         driver.switchTo().frame(iframe);
