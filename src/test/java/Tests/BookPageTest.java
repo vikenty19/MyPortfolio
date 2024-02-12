@@ -1,18 +1,14 @@
 package Tests;
 
-import Pages.BookPage;
+import Pages.BookPagePage;
 import Pages.MakePaymentPage;
-import Tests.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.Select;
-
-import java.time.Duration;
 
 public class BookPageTest extends BaseTest {
     //first name [data-code="first_name"]
@@ -49,7 +45,7 @@ By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
 
        JavascriptExecutor js = (JavascriptExecutor)driver;
         MakePaymentPage makePaymentPage = new MakePaymentPage(driver);
-BookPage bookPage = new BookPage(driver);
+        BookPagePage bookPage = new BookPagePage(driver);
         makePaymentPage.clickBookPage();
         System.out.println("Before");
         Thread.sleep(3000);
@@ -57,37 +53,32 @@ BookPage bookPage = new BookPage(driver);
 
         makePaymentPage.switchToMainIframe();
         Thread.sleep(1000);
-        WebElement firstName =driver.findElement(firstN);
-        firstName.click();
-
-        firstName.clear();
-        firstName.sendKeys("John");
-
+        //First Name
+        bookPage.enterFieldValue("John",firstN);
 
         //last name
-        bookPage.enterFieldValue("Dou");
+        bookPage.enterFieldValue("Dou",lastN);
         //email
-        WebElement email =  wait.until(ExpectedConditions
-                .visibilityOfElementLocated(mailCSS));
-        email.click();
-        email.clear();
-        email.sendKeys("<@gmail.co");
+        bookPage.enterFieldValue("<@gmail.co",mailCSS);
+
         //phone number
-        WebElement phone =  wait.until(ExpectedConditions
+        bookPage.enterFieldValue("346-75-234-44",phoneCSS);
+      /*  WebElement phone =  wait.until(ExpectedConditions
                 .visibilityOfElementLocated(phoneCSS));
         phone.click();
         phone.clear();
-        phone.sendKeys("346-75-234-44");
+        phone.sendKeys("346-75-234-44");*/
 
 
 
          // Address of order
-       WebElement address = wait.until(ExpectedConditions
+        bookPage.enterFieldValue("Oriental blvd",addressCss);
+     /*  WebElement address = wait.until(ExpectedConditions
                .elementToBeClickable(addressCss));
        address.click();
        address.clear();
-       address.sendKeys("Oriental blvd");
-        System.out.println(address.getText());
+       address.sendKeys("Oriental blvd");*/
+      //  System.out.println(address.getText());
        WebElement city = wait.until(ExpectedConditions
                .elementToBeClickable(cityCss));
                city.click();
@@ -106,9 +97,9 @@ BookPage bookPage = new BookPage(driver);
      //   statesDrop.click();
         Select drpStates = new Select(statesDrop);
          drpStates.selectByVisibleText("NY");
-        address.click();
-        String textCheck =
-        address.getText();
+         statesDrop.click();
+           String textCheck =
+        statesDrop.getText();
         System.out.println(textCheck);
         //Assert.assertEquals(,"Oriental blvd");
     //    js.executeScript("window.scrollBy(0,document.body.scrollHeight)");

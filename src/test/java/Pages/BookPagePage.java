@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BookPage extends BasePage {
-    public BookPage(WebDriver givenDriver) {
+public class BookPagePage extends BasePage {
+    public BookPagePage(WebDriver givenDriver) {
         super(givenDriver);
     }
 
@@ -27,16 +27,16 @@ public class BookPage extends BasePage {
     By subId = By.cssSelector("input[type = 'submit']");
     By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
 
-    public void enterFieldValue(String text) {
+    public void enterFieldValue(String text,By locator) {
 
-        WebElement lastName = waitUntilClickable(lastN);
-        lastName.click();
-        lastName.clear();
-        lastName.sendKeys(text);
+        WebElement enterField = waitUntilClickable(locator);
+        enterField.click();
+        enterField.clear();
+        enterField.sendKeys(text);
     }
 
     public WebElement waitUntilClickable(By element) {
-        return new WebDriverWait(driver, Duration.ofSeconds(4))
+        return new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(element));
     }
 }

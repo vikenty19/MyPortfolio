@@ -32,7 +32,7 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    void setBrowser()  {
+    void setBrowser() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-notifications");
@@ -40,8 +40,8 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
-       driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-       driver.manage().timeouts().getScriptTimeout();
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        driver.manage().timeouts().getScriptTimeout();
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         driver.get(url);
         By closeAdd = By.xpath("//img[@alt = 'Close']");
@@ -49,7 +49,7 @@ public class BaseTest {
         close.click();
     }
 
-   @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void TearDown() {
         driver.quit();
     }
@@ -57,54 +57,54 @@ public class BaseTest {
     @Test
     public void checkUrl() throws InterruptedException {
         By closeAdd = By.xpath("//img[@alt = 'Close']");
-         Thread.sleep(1000);
-         wait.until(ExpectedConditions.visibilityOfElementLocated(closeAdd)).click();
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(closeAdd)).click();
         Assertions.assertEquals(driver.getCurrentUrl(), url);
         System.out.println(driver.getCurrentUrl());
 
     }
 
- @Test
+    @Test
     public void datePicker() throws InterruptedException {
 
-     By bookXml = By.cssSelector("li[id='menu-item-122']");
-     By iframeXpath = By.xpath("//iframe[@data-lazyloaded = '1']");
-    // By dataCss = By.cssSelector("[data-id= '181']>input");//[id=dp1706116425190]
-      By dataCss = By.id("dp1706116425190");
-     By monthXpath = By.xpath("//span[@class ='ui-datepicker-month']");
-     By iframeCalendCss = By.cssSelector("[name='__privateStripeMetricsController6540']");
+        By bookXml = By.cssSelector("li[id='menu-item-122']");
+        By iframeXpath = By.xpath("//iframe[@data-lazyloaded = '1']");
+        // By dataCss = By.cssSelector("[data-id= '181']>input");//[id=dp1706116425190]
+        By dataCss = By.id("dp1706116425190");
+        By monthXpath = By.xpath("//span[@class ='ui-datepicker-month']");
+        By iframeCalendCss = By.cssSelector("[name='__privateStripeMetricsController6540']");
 
-     JavascriptExecutor js =(JavascriptExecutor)driver;
-     WebElement bookNowBtn = wait.until(ExpectedConditions
-             .visibilityOfElementLocated(bookXml));
-     bookNowBtn.click();
-     System.out.println("Before");
-     Thread.sleep(3000);
-     WebElement iframe = wait.until(ExpectedConditions
-             .visibilityOfElementLocated(iframeXpath));
-     driver.switchTo().frame(iframe);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement bookNowBtn = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(bookXml));
+        bookNowBtn.click();
+        System.out.println("Before");
+        Thread.sleep(3000);
+        WebElement iframe = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(iframeXpath));
+        driver.switchTo().frame(iframe);
 
         WebElement calendarField = wait.until(ExpectedConditions
                 .elementToBeClickable(dataCss));
-  //   js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        //   js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 
         js.executeScript("arguments[0].scrollIntoView(true);", calendarField);
-   //  js.executeScript("window.scrollBy(0,500)");
-     js.executeScript("arguments[0].click();",calendarField);
-     js.executeScript("arguments[0].click();",calendarField);
+        //  js.executeScript("window.scrollBy(0,500)");
+        js.executeScript("arguments[0].click();", calendarField);
+        js.executeScript("arguments[0].click();", calendarField);
         //    calendarField.click();
 
         WebElement monthPicker = wait.until(ExpectedConditions
                 .elementToBeClickable(monthXpath));
-     js.executeScript("arguments[0].scrollIntoView(true);", monthPicker);
+        js.executeScript("arguments[0].scrollIntoView(true);", monthPicker);
         String month = monthPicker.getText();
-     System.out.println(month);
-       while ((!month.contains("May"))) {
-           Thread.sleep(3000);
-       WebElement next = wait.until(ExpectedConditions
-               .elementToBeClickable(By.xpath("//span[@class ='ui-icon ui-icon-circle-triangle-e']")));
-           js.executeScript("arguments[0].click();", next);
-           Thread.sleep(3000);
-       }
- }
+        System.out.println(month);
+        while ((!month.contains("May"))) {
+            Thread.sleep(3000);
+            WebElement next = wait.until(ExpectedConditions
+                    .elementToBeClickable(By.xpath("//span[@class ='ui-icon ui-icon-circle-triangle-e']")));
+            js.executeScript("arguments[0].click();", next);
+            Thread.sleep(3000);
+        }
+    }
 }
