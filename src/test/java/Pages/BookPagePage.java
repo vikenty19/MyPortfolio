@@ -33,6 +33,7 @@ public class BookPagePage extends BasePage {
         enterField.click();
         enterField.clear();
         enterField.sendKeys(text);
+        System.out.println(enterField.getText());
     }
 
     public WebElement waitUntilClickable(By element) {

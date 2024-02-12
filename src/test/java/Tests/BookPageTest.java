@@ -63,33 +63,16 @@ By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
 
         //phone number
         bookPage.enterFieldValue("346-75-234-44",phoneCSS);
-      /*  WebElement phone =  wait.until(ExpectedConditions
-                .visibilityOfElementLocated(phoneCSS));
-        phone.click();
-        phone.clear();
-        phone.sendKeys("346-75-234-44");*/
-
-
 
          // Address of order
         bookPage.enterFieldValue("Oriental blvd",addressCss);
-     /*  WebElement address = wait.until(ExpectedConditions
-               .elementToBeClickable(addressCss));
-       address.click();
-       address.clear();
-       address.sendKeys("Oriental blvd");*/
-      //  System.out.println(address.getText());
-       WebElement city = wait.until(ExpectedConditions
-               .elementToBeClickable(cityCss));
-               city.click();
-       city.clear();
-       city.sendKeys("Brooklyn");
 
-       WebElement zipCode = wait.until(ExpectedConditions
-               .elementToBeClickable(zipCss));
-                 zipCode.click();
-                 zipCode.clear();
-                 zipCode.sendKeys("12345");
+      //  System.out.println(address.getText());
+        //Enter city
+        bookPage.enterFieldValue("Brooklyn",cityCss);
+
+      //Enter ZipCode
+        bookPage.enterFieldValue("12345",zipCss);
 
 
         WebElement statesDrop = wait.until(ExpectedConditions
@@ -98,41 +81,15 @@ By denyXpath = By.xpath("//div[text()='Please enter a valid email address.']");
         Select drpStates = new Select(statesDrop);
          drpStates.selectByVisibleText("NY");
          statesDrop.click();
-           String textCheck =
-        statesDrop.getText();
-        System.out.println(textCheck);
-        //Assert.assertEquals(,"Oriental blvd");
-    //    js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
-    //    js.executeScript("window.scrollBy(0,700)");
-  /*      WebElement calendarField = wait.until(ExpectedConditions
-                .elementToBeClickable(dataCss));
+   //        String textCheck =
+    //    statesDrop.getText();
+     //   System.out.println(textCheck);
 
-
-
-        js.executeScript("arguments[0].scrollIntoView(true);", calendarField);
-     //
-        js.executeScript("arguments[0].click();",calendarField);
-
-        //    calendarField.click();
-
-        WebElement monthPicker = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(monthCss));
-        js.executeScript("arguments[0].scrollIntoView(true);", monthPicker);
-        String month = monthPicker.getText();
-        System.out.println(month);
-        while ((!month.contains("May"))) {
-            System.out.println(month);
-            Thread.sleep(3000);
-            WebElement next = wait.until(ExpectedConditions
-                    .elementToBeClickable(By.xpath("//span[@class ='ui-icon ui-icon-circle-triangle-e']")));
-            js.executeScript("arguments[0].click();", next);
-            Thread.sleep(3000);
-        }
         //click Submit
         WebElement submitBtn =  wait.until(ExpectedConditions
                 .visibilityOfElementLocated(submit));
         submitBtn.click();
-        Thread.sleep(1000);*/
+        Thread.sleep(1000);
         driver.switchTo().defaultContent();
        WebElement subscribeEmail = wait.until(ExpectedConditions
                .elementToBeClickable(subEmail));

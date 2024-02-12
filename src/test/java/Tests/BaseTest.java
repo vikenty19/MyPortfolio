@@ -49,10 +49,10 @@ public class BaseTest {
         close.click();
     }
 
-    @AfterMethod(alwaysRun = true)
+ /*   @AfterMethod(alwaysRun = true)
     public void TearDown() {
         driver.quit();
-    }
+    }*/
 
     @Test
     public void checkUrl() throws InterruptedException {
