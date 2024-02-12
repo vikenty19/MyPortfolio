@@ -18,7 +18,7 @@ public class MakePaymentTests extends BaseTest {
         makePaymentPage.switchToCardEnterIframe();
         makePaymentPage.enterCardNumber();
 
-        driver.switchTo().parentFrame();
+        makePaymentPage.enterZipCode(js);
 
         makePaymentPage.pickTheMonth();
         driver.switchTo().parentFrame()
